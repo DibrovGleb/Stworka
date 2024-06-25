@@ -1,0 +1,139 @@
+html {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #ffffff;
+  --my-txt: '2343241234';
+}
+
+p,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.progress-container {
+  background: #3579F5;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  max-width: 743px;
+  gap: 10px;
+  border-radius: 20px;
+  align-items: center;
+}
+
+.progress-circle {
+  position: relative;
+  height: 60px;
+  margin: 10px 10px 10px 20px;
+}
+
+.progress-circle-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.progress-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3px;
+  margin: 0 80px 0 0;
+}
+
+.progress-text-name {
+  background: #2364DB;
+  border-radius: 40px;
+  padding: 0 15px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.progress-text-count {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.progress-text-next-task {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.progress-container button {
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 20px;
+  color: #4777ED;
+  border-radius: 6px;
+  border: 0;
+  padding: 10px 32px;
+  background: #F4F8FF;
+}
+
+
+.circular-progress {
+  --size: 60px;
+  --half-size: calc(var(--size) / 2);
+  --stroke-width: 2px;
+  --radius: calc((var(--size) - var(--stroke-width)) / 2);
+  --circumference: calc(var(--radius) * pi * 2);
+  --dash: calc((var(--progress) * var(--circumference)) / 100);
+  /* animation: progress-animation 5s linear 0s 1 forwards; */
+}
+
+.circular-progress circle {
+  cx: var(--half-size);
+  cy: var(--half-size);
+  r: var(--radius);
+  stroke-width: var(--stroke-width);
+  fill: none;
+  stroke-linecap: round;
+}
+
+.circular-progress circle.bg {
+  stroke: #ffffff81;
+}
+
+.circular-progress circle.fg {
+  transform: rotate(-90deg);
+  transform-origin: var(--half-size) var(--half-size);
+  stroke-dasharray: var(--dash) calc(var(--circumference) - var(--dash));
+  transition: stroke-dasharray 0.3s linear 0s;
+  stroke: #ffffff;
+}
+
+@property --progress {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes progress-animation {
+  from {
+    --progress: 0;
+  }
+
+  to {
+    --progress: 100;
+  }
+}
+
+@media (max-width:726px){
+  .progress-container{
+    justify-content: center;
+    gap: 20px;
+  }
+  .progress-container button {
+    margin: 0 0 10px;
+  }
+}
+@media (max-width:665px){
+  .progress-text{
+    margin: 0;
+  }
+}
